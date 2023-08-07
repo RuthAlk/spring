@@ -1,1 +1,11 @@
 http://localhost:8080
+
+
+###
+
+http://localhost:8080/actuator/health
+
+
+###
+# Should be off, now, but can be configured to work
+http://localhost:8080/actuator/shutdown
