@@ -1,8 +1,18 @@
 http://localhost:8080/greeting?greeting=GoodBye
 
 ###
-
 http://localhost:8080/recipes/
+###
+
+http://localhost:8080/recipes/create
+
+###
+POST http://localhost:8080/recipes/create
+Content-Type: application/x-www-form-urlencoded
+
+name=cr%C3%A8me+br%C3%BBl%C3%A9e
+
+
 
 ###
 

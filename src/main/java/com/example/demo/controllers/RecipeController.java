@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -29,19 +31,31 @@ public class RecipeController {
         return "recipe_list";
     }
 
+    @GetMapping("/create")
+    public String showCreateForm(Model model) {
+        model.addAttribute("recipe", new Recipe());
+        return "create_recipe";
+    }
+
+    @PostMapping("/create")
+    public String createItem(@ModelAttribute Recipe recipe) {
+        repository.save(recipe);
+        return "redirect:/recipes/";
+    }
+
     @GetMapping("/{recipeId}")
     public Recipe getUser(@PathVariable Long recipeId) {
         return this.repository.findById(recipeId).get();
     }
 
-    @GetMapping("/{userId}/ingredients")
+    @GetMapping("/{recipeId}/ingredients")
     public List<String> getUserCustomers(@PathVariable Long recipeId) {
         return this.repository.findById(recipeId).map(Recipe::getIngredients).get();
     }
 
-    @DeleteMapping("/{userId}")
-    public void deleteUser(@PathVariable Long userId) {
-        this.repository.deleteById(userId);
+    @DeleteMapping("/{recipeId}")
+    public void deleteUser(@PathVariable Long recipeId) {
+        this.repository.deleteById(recipeId);
     }
 
 }

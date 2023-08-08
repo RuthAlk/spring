@@ -1,0 +1,18 @@
+
+/* Style for the button-like anchor tag */
+.button-like {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none; /* Remove underline */
+}
+
+/* Style for hover effect */
+.button-like:hover {
+  background-color: #45a049;
+}

@@ -3,10 +3,14 @@
 <head> 
     <title>Getting Started: Serving Web Content</title> 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <th:block th:replace="fragments/head :: head"></th:block>
 </head>
 <body>
-    <p th:each="recipe: ${recipes}">
-        <i th:text="${recipe.name}" />
-    </p>
+    <ul th:each="recipe: ${recipes}">
+        <li th:text="${recipe.name}" />
+    </ul>
+    
+    <a class = "button-like" href="/recipes/create">Create</a>
+
 </body>
 </html>
