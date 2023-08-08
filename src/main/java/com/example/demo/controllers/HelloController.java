@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.example.demo.controllers;
 
+import com.example.demo.services.NameSupplier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +16,7 @@ public class HelloController {
         this.nameSupplier = nameSupplier;
     }
     
-    @GetMapping("/")
+    @GetMapping("/greeting")
     public String getIndex(@RequestParam(name="greeting", required=false, defaultValue="Hello") String greeting, Model model) {
         model.addAttribute("greeting", greeting);
         model.addAttribute("name", nameSupplier.getName());

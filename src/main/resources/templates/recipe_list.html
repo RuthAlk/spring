@@ -5,6 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-    <p><b><span th:text="${greeting} + ', ' + ${name} + '!'" /></b></p>
+    <p th:each="recipe: ${recipes}">
+        <i th:text="${recipe.name}" />
+    </p>
 </body>
 </html>
