@@ -9,8 +9,15 @@ import { RecipeService } from '../recipe.service';
   styleUrls: ['./new-recipe.component.css']
 })
 export class NewRecipeComponent {
-  newItem:Recipe = new Recipe();
-  constructor(private router:Router, private recipeService:RecipeService) {
+  newItem: Recipe = new Recipe();
+  ingredientName: string | undefined;
+
+  constructor(private router: Router, private recipeService: RecipeService) {
+  }
+
+  addIngredient() {
+    if (this.ingredientName) this.newItem.addIngredient(this.ingredientName);
+    this.ingredientName = undefined;
   }
 
   onSubmit(form: any) {
@@ -18,8 +25,9 @@ export class NewRecipeComponent {
       // Perform logic to create new item using form values
       console.log(this.newItem);
       // Reset the form after submission
-      this.recipeService.createNew(this.newItem).subscribe(d => {console.log("item created?")});
+      this.recipeService.createNew(this.newItem).subscribe(d => { console.log("item created?") });
       form.reset();
+      this.newItem = new Recipe();
       // TODO Or show new recipe?
       this.router.navigate(['/']);
     }

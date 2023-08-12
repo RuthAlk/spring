@@ -10,6 +10,7 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeService } from './recipe.service';
 import { RecipesComponent } from './recipes/recipes.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
+import { AboutComponentComponent } from './about-component/about-component.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { TopBarComponent } from './top-bar/top-bar.component';
     RecipeDetailComponent,
     TopBarComponent,
     NewRecipeComponent,
+    AboutComponentComponent,
   ],
   imports: [
     BrowserModule,

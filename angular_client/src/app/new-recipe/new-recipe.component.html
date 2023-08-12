@@ -1,11 +1,22 @@
 <div>
   <h2>Create New Item</h2>
   <form #itemForm="ngForm" (ngSubmit)="onSubmit(itemForm)">
+    <div>
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" [(ngModel)]="newItem.name">
 
     <!-- Other form controls as needed -->
 
+    <!-- Add new ingredient -->
+    </div>
+    <ul *ngFor="let ingredient of newItem.ingredients">
+      <li>{{ingredient.name}}</li>
+    </ul>
+    <div>
+    <input type="text" [(ngModel)]="ingredientName" name="ingredientName" placeholder="New Ingredient">
+    <button type = "button" (click)="addIngredient()">Add</button>
+
+    </div>
     <button type="submit">Create Item</button>
   </form>
 </div>

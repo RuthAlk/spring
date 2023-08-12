@@ -1,6 +1,14 @@
 <div *ngIf="item ;else nullBlock">
   <h1>{{ item.name }}</h1>
+
+  <h2>Ingredients</h2>
+  <ul *ngIf="item.ingredients.length > 0; else noIngredients">
+    <li *ngFor="let g of item.ingredients">{{g.name}}</li>
+  </ul>
 </div>
+<ng-template #noIngredients>
+  <p>No ingredients</p>
+</ng-template>
 <ng-template #nullBlock>
   <p>Recipe not found</p>
 </ng-template>
