@@ -56,6 +56,12 @@ public class Recipe {
         this.name = name;
     }
 
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
     
     
 }
