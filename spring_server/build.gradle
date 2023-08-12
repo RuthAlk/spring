@@ -2,7 +2,10 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.1.2'
 	id 'io.spring.dependency-management' version '1.1.2'
+    id 'com.bmuschko.docker-spring-boot-application' version '9.3.2'
 }
+
+import com.bmuschko.gradle.docker.tasks.image.*
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -33,3 +36,12 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+docker {
+	springBootApplication {
+        baseImage = 'eclipse-temurin:17-jre-alpine'
+        ports = [9090, 8080]
+        jvmArgs = ['-Dspring.profiles.active=production', '-Xmx2048m']
+    }
+}
+
