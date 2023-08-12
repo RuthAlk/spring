@@ -8,7 +8,7 @@ services:
     networks:
       - my-network
     ports:
-      - 8080
+      - "7071:8080"
 
   angular-frontend:
     build:
