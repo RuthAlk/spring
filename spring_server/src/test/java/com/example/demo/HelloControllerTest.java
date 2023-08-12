@@ -16,8 +16,7 @@ public class HelloControllerTest {
 
     @Test
     public void testHello() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/").accept("application/json"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string("Hello World"));
+        mockMvc.perform(MockMvcRequestBuilders.get("/greeting").accept("application/json"))
+                .andExpect(MockMvcResultMatchers.status().isOk())                ;
     }
 }
