@@ -28,4 +28,9 @@ export class RecipeService {
     const url = `${this.apiUrl}/recipes/${id}`;
     return this.http.get(url);
   }
+
+  createNew(value: any): Observable<Object> {
+    return this.http.post(`${this.apiUrl}/recipes/create`, value);
+  }
+
 }

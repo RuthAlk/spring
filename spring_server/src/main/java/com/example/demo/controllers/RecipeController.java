@@ -38,6 +38,7 @@ public class RecipeController {
     @PostMapping("/create")
     public ResponseEntity<String> createItem(@RequestBody Recipe recipe) {
         repository.save(recipe);
+        // TODO return the new id, or the complete item
         return ResponseEntity.ok("Item Created");
     }
 
