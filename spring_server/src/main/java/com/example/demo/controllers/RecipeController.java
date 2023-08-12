@@ -34,12 +34,12 @@ public class RecipeController {
             return repository.findAll();
     }
 
-
+    /**
+     * TODO: Check if there really isn't a more default way of adding all these basic methods?
+     */
     @PostMapping("/create")
-    public ResponseEntity<String> createItem(@RequestBody Recipe recipe) {
-        repository.save(recipe);
-        // TODO return the new id, or the complete item
-        return ResponseEntity.ok("Item Created");
+    public ResponseEntity<Recipe> createItem(@RequestBody Recipe recipe) {
+        return ResponseEntity.ok(repository.save(recipe));
     }
 
     @GetMapping("/{recipeId}")

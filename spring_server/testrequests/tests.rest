@@ -1,7 +1,7 @@
 http://localhost:8080/greeting?greeting=GoodBye
 
 ###
-http://localhost:8080/recipes
+http://localhost:8080/datamodel/recipes
 ###
 http://localhost:8080/recipes
 Content-Type: application/json
@@ -22,7 +22,8 @@ Content-Type: application/json
 "name":"Appeltaart"
 }
 
-
+###
+http://localhost:8080/actuator/mappings
 
 ###
 
