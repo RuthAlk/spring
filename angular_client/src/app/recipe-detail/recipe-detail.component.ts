@@ -16,8 +16,9 @@ export class RecipeDetailComponent implements OnInit {
     this.route.params.subscribe(params => {
       const itemId = params['id'];
       console.log("Got item nr " + itemId)
-      // Fetch item details using the itemId
-      // doe iets met recipe service
+      this.recipeService.getItemById(itemId).subscribe(data => {
+        this.item = data;
+      });
     });
   }
 }

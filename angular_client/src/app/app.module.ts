@@ -7,12 +7,14 @@ import { RecipeService } from './recipe.service';
 import { RecipesComponent } from './recipes/recipes.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
+import { TopBarComponent } from './top-bar/top-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipesComponent,
     RecipeDetailComponent,
+    TopBarComponent,
   ],
   imports: [
     BrowserModule,
