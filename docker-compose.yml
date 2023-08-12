@@ -1,0 +1,28 @@
+version: '3'
+services:
+  spring-backend:
+    build:
+        context: ./spring_server/build/docker
+        dockerfile: Dockerfile
+    image: spring-backend-image:SNAPSHOT
+    networks:
+      - my-network
+    ports:
+      - 8080
+
+  angular-frontend:
+    build:
+        context: ./angular_client
+        dockerfile: Dockerfile
+
+    image: angular-frontend:SNAPSHOT
+    ports:
+      - "4201:4200"
+      - "7070:80"
+    networks:
+      - my-network
+    depends_on:
+      - spring-backend
+
+networks:
+  my-network:
