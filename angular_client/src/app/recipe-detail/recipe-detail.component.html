@@ -1,2 +1,6 @@
-
-<h1>{{ item.name }}</h1>
+<div *ngIf="item ;else nullBlock">
+  <h1>{{ item.name }}</h1>
+</div>
+<ng-template #nullBlock>
+  <p>Recipe not found</p>
+</ng-template>

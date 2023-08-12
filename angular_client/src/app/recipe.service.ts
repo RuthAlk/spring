@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
+import { Recipe } from './model/recipe.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,8 @@ export class RecipeService {
 
   }
 
-  getItems(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/recipes`).pipe(
+  getItems(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${this.apiUrl}/recipes`).pipe(
       catchError(error => {
         // Handle the error here
         console.error('An error occurred:', error);
@@ -24,13 +24,13 @@ export class RecipeService {
     );
   }
 
-  getItemById(id: number): Observable<any> {
+  getItemById(id: number): Observable<Recipe> {
     const url = `${this.apiUrl}/recipes/${id}`;
-    return this.http.get(url);
+    return this.http.get<Recipe>(url);
   }
 
-  createNew(value: any): Observable<Object> {
-    return this.http.post(`${this.apiUrl}/recipes/create`, value);
+  createNew(value: Recipe): Observable<Recipe> {
+    return this.http.post<Recipe>(`${this.apiUrl}/recipes/create`, value);
   }
 
 }
