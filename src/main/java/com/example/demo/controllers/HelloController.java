@@ -2,12 +2,11 @@ package com.example.demo.controllers;
 
 import com.example.demo.services.NameSupplier;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class HelloController {
     private NameSupplier nameSupplier;
 
@@ -17,9 +16,7 @@ public class HelloController {
     }
     
     @GetMapping("/greeting")
-    public String getIndex(@RequestParam(name="greeting", required=false, defaultValue="Hello") String greeting, Model model) {
-        model.addAttribute("greeting", greeting);
-        model.addAttribute("name", nameSupplier.getName());
-        return "greeting"; // points to the template used, I guess
+    public String getIndex(@RequestParam(name="greeting", required=false, defaultValue="Hello") String greeting) {
+        return greeting + " " + nameSupplier.getName(); // points to the template used, I guess
     }
 }

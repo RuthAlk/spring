@@ -4,19 +4,22 @@ import java.util.List;
 
 import com.example.demo.datamodel.Recipe;
 import com.example.demo.datamodel.RecipeRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+
 @RequestMapping("/recipes")
+@RestController
 public class RecipeController {
+    ObjectMapper mapper = new ObjectMapper();
 
     private final RecipeRepository repository;
 
@@ -26,21 +29,16 @@ public class RecipeController {
     }
 
     @GetMapping(path = {"","/"})
-    public String findAll(Model model) {
-        model.addAttribute("recipes", repository.findAll());
-        return "recipe_list";
+    public List<Recipe> findAll() {
+
+            return repository.findAll();
     }
 
-    @GetMapping("/create")
-    public String showCreateForm(Model model) {
-        model.addAttribute("recipe", new Recipe());
-        return "create_recipe";
-    }
 
     @PostMapping("/create")
-    public String createItem(@ModelAttribute Recipe recipe) {
+    public ResponseEntity<String> createItem(@RequestBody Recipe recipe) {
         repository.save(recipe);
-        return "redirect:/recipes/";
+        return ResponseEntity.ok("Item Created");
     }
 
     @GetMapping("/{recipeId}")
