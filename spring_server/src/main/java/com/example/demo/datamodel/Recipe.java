@@ -2,12 +2,14 @@ package com.example.demo.datamodel;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Recipe {
@@ -18,10 +20,8 @@ public class Recipe {
     @Column(nullable = false)
     private String name;
 
-    @ElementCollection
-    @CollectionTable(name = "ingredients_list")
-    @Column(name = "ingredient")
-    private List<String> ingredients;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Ingredient> ingredients;
     
     @ElementCollection
     @CollectionTable(name = "steps_list")
@@ -31,7 +31,7 @@ public class Recipe {
     /**
      * @return the ingredients
      */
-    public List<String> getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 

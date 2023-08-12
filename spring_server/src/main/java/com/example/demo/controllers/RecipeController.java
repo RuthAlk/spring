@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.demo.datamodel.Recipe;
 import com.example.demo.datamodel.RecipeRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,6 @@ public class RecipeController {
 
     @GetMapping(path = {"","/"})
     public List<Recipe> findAll() {
-
             return repository.findAll();
     }
 
@@ -39,21 +39,25 @@ public class RecipeController {
      */
     @PostMapping("/create")
     public ResponseEntity<Recipe> createItem(@RequestBody Recipe recipe) {
+        System.out.println("Got recipe: " + safeToString(recipe));
         return ResponseEntity.ok(repository.save(recipe));
     }
 
+    private String safeToString(Object o) {
+        try {
+            return mapper.writeValueAsString(o);
+        } catch (JsonProcessingException e) {
+            return String.valueOf(o);
+        }
+    }
+
     @GetMapping("/{recipeId}")
-    public Recipe getUser(@PathVariable Long recipeId) {
+    public Recipe getByID(@PathVariable Long recipeId) {
         return this.repository.findById(recipeId).get();
     }
 
-    @GetMapping("/{recipeId}/ingredients")
-    public List<String> getUserCustomers(@PathVariable Long recipeId) {
-        return this.repository.findById(recipeId).map(Recipe::getIngredients).get();
-    }
-
     @DeleteMapping("/{recipeId}")
-    public void deleteUser(@PathVariable Long recipeId) {
+    public void deleteByID(@PathVariable Long recipeId) {
         this.repository.deleteById(recipeId);
     }
 

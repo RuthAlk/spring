@@ -19,7 +19,8 @@ POST http://localhost:8080/recipes/create
 Content-Type: application/json
 
 {
-"name":"Appeltaart"
+"name":"Appeltaart",
+"ingredients":[{"name":"boter"},{"name":"boter"}]
 }
 
 ###
