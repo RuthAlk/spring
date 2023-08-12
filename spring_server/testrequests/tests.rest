@@ -1,9 +1,18 @@
-http://localhost:8080/greeting?greeting=GoodBye
+@url = http://localhost:32770
+
+@angularURL = http://localhost:32773
 
 ###
-http://localhost:8080/datamodel/recipes
+
+{{angularURL}}/
+
 ###
-http://localhost:8080/recipes
+
+
+{{url}}/greeting?greeting=GoodBye
+
+###
+{{url}}/recipes
 Content-Type: application/json
 Accept: application/json
 
